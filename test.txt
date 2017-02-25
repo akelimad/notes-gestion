@@ -1,3 +1,5 @@
 bonjour
 
 deuxieme modification
+
+ASTUCE POUR NE PAS FAIRE A CHAQUE FOIS ADD A L INDEX . ON FAIT JUSTE commit -a -m "msg"
