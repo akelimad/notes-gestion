@@ -1,10 +1,7 @@
 // api url
-var baseApiUrl = "http://localhost/zeyncore/employee_test/api";
-
-var app = angular.module("AngularApp", [
-  'ngRoute',
-  //'homeController',
-], function($httpProvider) {
+var baseApiUrl = "http://localhost/zeyncore/api";
+var monapp = angular.module("monapp", ['ngRoute']);
+var app = angular.module("AngularApp", ['ngRoute'], function($httpProvider) {
   // Use x-www-form-urlencoded Content-Type
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
@@ -85,6 +82,18 @@ app.controller("homeController", function($scope, $http){
 
 app.controller("createUserController", function($scope, $http, $location){
   $scope.createUser = function(){
+    $http.post("api/createUser.php",{
+      'username':$scope.username,
+      'email':$scope.email,
+      'password':$scope.password
+    }).success(function(data, status, headers, config){
+      alert("user created");
+    });
+  };
+});
+
+app.controller("createNoteController", function($scope, $http, $location){
+  $scope.createUser = function(){
 
     $http({
       method: 'POST',
@@ -101,4 +110,10 @@ app.controller("createUserController", function($scope, $http, $location){
       }
     });
   };
+});
+
+monapp.config(function ($routeProvider){
+    $routeProvider
+    .when('/', {templateUrl: 'partials/login.html', controller: 'loginCtrl'})
+    .otherwise({redirectTo : '/'});
 });

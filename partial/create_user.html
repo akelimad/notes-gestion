@@ -2,19 +2,21 @@
   <h1>Create new user</h1>
   <div class="panel">
     <div class="panel-body">
-      <div class="form-group">
+      <form action="" method="POST">
+        <div class="form-group">
         <label>Username</label>
-        <input type="text" class="form-control" ng-model="formData.username">
+        <input type="text" class="form-control" ng-model="username">
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input type="text" class="form-control" ng-model="formData.email">
+        <input type="text" class="form-control" ng-model="email">
       </div>
       <div class="form-group">
         <label>Password</label>
-        <input type="password" class="form-control" ng-model="formData.password">
+        <input type="password" class="form-control" ng-model="password">
       </div>
       <input type="submit" class="btn btn-primary" ng-click="createUser()">
+      </form>
     </div>
   </div>
   

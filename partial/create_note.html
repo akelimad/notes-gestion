@@ -1,0 +1,18 @@
+<div ng-controller="createNoteController">
+  <h1>Create new note</h1>
+  <div class="panel">
+    <div class="panel-body">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" ng-model="formData.email">
+      </div>
+      <div class="form-group">
+        <label>Note</label>
+        <textarea class="form-control" ng-model="formData.note"></textarea>
+      </div>
+      <input type="submit" class="btn btn-primary" ng-click="createNote()">
+    </div>
+  </div>
+  
+</div>
+

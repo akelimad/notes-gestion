@@ -1,10 +1,9 @@
 <?php
-class Api
-{
+class Api{
+
   public $db;
 
-  public function __construct()
-  {
+  public function __construct(){
     try {
         $dbh = new PDO('mysql:host=localhost;dbname=zinycore', 'root', '');
         /*foreach($dbh->query('SELECT * from FOO') as $row) {
@@ -19,8 +18,7 @@ class Api
   }
 
 
-  public function output($outputs = array())
-  {
+  public function output($outputs = array()){
     $outputs = array_merge(array(
       "success" => true,
     ),$outputs);
@@ -28,8 +26,7 @@ class Api
     return json_encode($outputs);
   }
 
-  public function createUser($inputs = array())
-  {
+  public function createUser($inputs = array()){
     $reponse = array();
     $reponse['error'] = true;
     $reponse['msgContent'] = 'Please fill in required fields';
@@ -37,13 +34,11 @@ class Api
     if ( isset($inputs) && isset($inputs['username']) && isset($inputs['password']) && isset($inputs['email'])
           && $inputs['username'] != '' && $inputs['password'] != '' && $inputs['email'] != '' )
     {
-      $stmt = $this->db->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:username, :email, :password)");
+      $stmt = $this->db->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
       $stmt->bindParam(':username', $inputs['email']);
       $stmt->bindParam(':email', $inputs['email']);
       $stmt->bindParam(':password', md5($inputs['password']));
-
-      if ($stmt->execute())
-      {
+      if ($stmt->execute()){
         $reponse['user'] = $inputs;
         $reponse['msgContent'] = 'You have been successfully registered';
       }
@@ -51,14 +46,12 @@ class Api
         $reponse['msgContent'] = 'Something went wrong, please try again';
       }
     }
-
     return $this->output($reponse);
   }
 
-  public function getUsers()
-  {
+  public function getUsers(){
     $users = array();
-    foreach($this->db->query('SELECT id, username, email, password from `users` ') as $row) {
+    foreach($this->db->query('SELECT id, username, email, password from users ') as $row) {
         $users['users'][] = array(
           "id" => $row["id"],
           "username" => $row["username"],
@@ -70,8 +63,7 @@ class Api
     return $this->output($users);
   }
 
-  public function getPosts()
-  {
+  public function getPosts(){
 
   }
 
